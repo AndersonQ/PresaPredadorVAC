@@ -41,7 +41,7 @@ public class Leitor
 			{
 				for(int j = 0; j < c; j++)
 				{
-					mindo[i][j] = tokens[j];
+					mindo[i][j] = Integer.parseInt(tokens[j]);
 				}
 			}
 		}
