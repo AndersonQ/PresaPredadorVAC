@@ -25,15 +25,16 @@ public class Leitor
 		BufferedReader file = new BufferedReader(new FileReader(nome));
 
 		line = file.readLine();
-		tokens = line.split(";");
+		tokens = line.split(",");
 		l = Integer.parseInt(tokens[0]);
-		c = Integer.parseInt(tokens[2]);
+		c = Integer.parseInt(tokens[1]);
 
 		char mundo[][] = new char[l][c];
 
-		while(line.ready())
+		while(file.ready())
 		{
-			tokens = line.split(";");
+			line = file.readLine();
+			tokens = line.split(",");
 			for(int i = 0; i < l; i++)
 			{
 				for(int j = 0; j < c; j++)
