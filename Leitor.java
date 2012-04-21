@@ -42,5 +42,7 @@ public class Leitor
 				}
 			}
 		}
+
+		return mundo;
 	}
 }
