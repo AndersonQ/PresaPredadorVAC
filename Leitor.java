@@ -9,8 +9,9 @@
  *        Created:  21-04-2012 17:19:40
  *       Revision:  none
  *       Compiler:  javac
+ *         Author:  Anderson de França Queiroz (A.F.Q.), contato(.AT,)andersonq dot eti dot br
+ *         	    Tiago de França Queiroz, contato(.AT,)tiago dot eti dot br
  *
- *         Author:  Anderson de França Queiroz (A.F.Q.), anderson.f.queiroz(.AT,)gmail dot com
  *        Company:  Universidade Federal do ABC - UFABC
  *
  * =====================================================================================
