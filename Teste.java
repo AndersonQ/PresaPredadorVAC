@@ -1,7 +1,7 @@
 /*
  * =====================================================================================
  *
- *       Filename:  Simulador.java
+ *       Filename:  Teste.java
  *
  *    Description:  
  *
@@ -16,15 +16,26 @@
  * =====================================================================================
  */
 
-public class Simulador
+import Java
+
+public class Teste
 {
 	public static int main(Strinh[] args)
 	{
 		Leitor le;
 		int[][] mundo;
+		int l, c;
 
 		le = new Leitor("./teste");
 		mundo = le.LerArquivo();
 
+		l = le.Getl();
+		c = le.Getc();
 
-
+		for(int i = 0; i < l; i++)
+		{
+			for(int j = 0; j < ; j++)
+				System.out.printf();
+		}
+	}
+}
