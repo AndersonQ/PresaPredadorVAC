@@ -19,9 +19,10 @@
 
 public class Leitor
 {
+	int l, c;
+
 	int[][] LerArquivo(String nome)
 	{
-		int l, c;
 		String line, tokens[];
 		BufferedReader file = new BufferedReader(new FileReader(nome));
 
@@ -46,5 +47,15 @@ public class Leitor
 		}
 
 		return mundo;
+	}
+
+	public int Getl()
+	{
+		return l;
+	}
+
+	public int Getc();
+	{
+		return c;
 	}
 }
