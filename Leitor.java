@@ -17,21 +17,26 @@
  * =====================================================================================
  */
 
+import java.io.*;
+
 public class Leitor
 {
 	int l, c;
+	int[][] mundo;
 
-	int[][] LerArquivo(String nome)
+	int[][] LerArquivo(String nome) throws Exception
 	{
 		String line, tokens[];
-		BufferedReader file = new BufferedReader(new FileReader(nome));
+		BufferedReader file = null;
+
+		file = new BufferedReader(new FileReader(nome));
 
 		line = file.readLine();
 		tokens = line.split(",");
 		l = Integer.parseInt(tokens[0]);
 		c = Integer.parseInt(tokens[1]);
 
-		char mundo[][] = new char[l][c];
+		mundo = new int[l][c];
 
 		while(file.ready())
 		{
@@ -41,11 +46,10 @@ public class Leitor
 			{
 				for(int j = 0; j < c; j++)
 				{
-					mindo[i][j] = Integer.parseInt(tokens[j]);
+					mundo[i][j] = Integer.parseInt(new String(tokens[j]));
 				}
 			}
 		}
-
 		return mundo;
 	}
 
@@ -54,8 +58,13 @@ public class Leitor
 		return l;
 	}
 
-	public int Getc();
+	public int Getc()
 	{
 		return c;
+	}
+
+	public int[][] GetMundo()
+	{
+		return mundo;
 	}
 }
