@@ -20,14 +20,21 @@ import java.io.*;
 
 public class Teste
 {
-	public static int main(String[] args) throws Exception
+	public static void main(String[] args)
 	{
-		Leitor le;
-		int[][] mundo;
+		Leitor le = null;
+		int[][] mundo = null;
 		int l, c;
 
-		le = new Leitor();
-		mundo = le.LerArquivo("./teste");
+		try
+		{
+			le = new Leitor();
+			mundo = le.LerArquivo("./teste");
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
 
 		l = le.Getl();
 		c = le.Getc();
@@ -40,6 +47,5 @@ public class Teste
 			}
 			System.out.printf("\n");
 		}
-		return 0;
 	}
 }
