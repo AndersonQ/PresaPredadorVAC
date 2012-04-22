@@ -29,7 +29,7 @@ public class Teste
 		try
 		{
 			le = new Leitor();
-			mundo = le.LerArquivo("./teste");
+			mundo = le.LerArquivo("./mapa01");
 		}
 		catch(Exception e)
 		{
@@ -38,12 +38,13 @@ public class Teste
 
 		l = le.Getl();
 		c = le.Getc();
+		System.out.printf("mundo[%d][%d]\n", l, c);
 
 		for(int i = 0; i < l; i++)
 		{
 			for(int j = 0; j < c; j++)
 			{
-				System.out.println(mundo[l][c] + " ");
+				System.out.print(mundo[i][j] + " ");
 			}
 			System.out.printf("\n");
 		}

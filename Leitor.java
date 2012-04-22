@@ -28,6 +28,7 @@ public class Leitor
 	{
 		String line, tokens[];
 		BufferedReader file = null;
+		int k = 0, i;
 
 		file = new BufferedReader(new FileReader(nome));
 
@@ -38,17 +39,17 @@ public class Leitor
 
 		mundo = new int[l][c];
 
+		i = 0;
 		while(file.ready())
 		{
 			line = file.readLine();
 			tokens = line.split(",");
-			for(int i = 0; i < l; i++)
+			k = 0;
+			for(int j = 0; j < c; j++)
 			{
-				for(int j = 0; j < c; j++)
-				{
-					mundo[i][j] = Integer.parseInt(new String(tokens[j]));
-				}
+				mundo[i][j] = Integer.parseInt(new String(tokens[k++]));
 			}
+			i++;
 		}
 		return mundo;
 	}
