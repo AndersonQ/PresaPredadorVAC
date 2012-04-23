@@ -3,3 +3,7 @@ Predador:
 	Se vida = 0, morre;
 	Se presa em raio 2, segue-a;
 	Se nenhuma das anteriores, anda aleatório.
+
+Recilcador: Se ver defunto em R=1 ou R=2 move-se para ele e reclicla.
+	    Se não acha defunto, anda aleatóro
+	    Morre se ficar sem vida
