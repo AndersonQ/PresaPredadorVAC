@@ -401,18 +401,18 @@ public class Simulador
 						x = vizinhosR2[cel*2];
 						y = vizinhosR2[cel * 2 + 1];
 
-						if(x > l)
-							andaX = l + 1;
-						else if(x < l)
-							andaX = l - 1;
-						else if(x == l)
+						if(x > i)
+							andaX = i + 1;
+						else if(x < i)
+							andaX = i - 1;
+						else if(x == i)
 							andaX = 0;
 
-						if(y > c)
-							andaY = c + 1;
-						else if(y < c)
-							andaY = c - 1;
-						else if(y == c)
+						if(y > j)
+							andaY = j + 1;
+						else if(y < j)
+							andaY = j - 1;
+						else if(y == j)
 							andaY = 0;
 						
 						if(i < l && j < c)
