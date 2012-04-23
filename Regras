@@ -1,0 +1,5 @@
+Predador:
+	Se presa em raio 1, come-a;
+	Se vida = 0, morre;
+	Se presa em raio 2, segue-a;
+	Se nenhuma das anteriores, anda aleatório.
