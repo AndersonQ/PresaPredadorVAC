@@ -22,6 +22,7 @@ public class Teste
 {
 	public static void main(String[] args)
 	{
+		Simulador s = null;
 		Leitor le = null;
 		int[][] mundo = null;
 		int l, c;
@@ -48,5 +49,11 @@ public class Teste
 			}
 			System.out.printf("\n");
 		}
+
+
+		System.out.printf("\n\nCOMEÇANDO O TESTE SÉRIO!!\n\n");
+		s = new Simulador();
+		s.Faz_Tudo("./mapa01");
+
 	}
 }

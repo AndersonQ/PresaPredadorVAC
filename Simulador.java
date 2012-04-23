@@ -32,7 +32,7 @@ public class Simulador
 	protected int l, c;
 	Random r;
 
-	public void main(String[] args)
+	public void Faz_Tudo(String arq)
 	{
 		Leitor le;
 		Celula[][] mapa_lido;
@@ -42,7 +42,7 @@ public class Simulador
 		le = new Leitor();
 		try
 		{
-			mundo_int = le.LerArquivo(args[1]);
+			mundo_int = le.LerArquivo(arq);
 		}
 		catch(Exception e)
 		{
@@ -53,8 +53,6 @@ public class Simulador
 		c = le.Getc();
 
 		mapa_lido = mIntTomCelula(mundo_int, l, c);
-
-
 	}
 
 	Simulador()
