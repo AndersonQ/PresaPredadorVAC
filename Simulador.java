@@ -456,7 +456,7 @@ public class Simulador
 
 	void processaNada()
 	{
-		int vPresa, vPredador, vReciclador;
+		int vPresa, vPredador, vReciclador, vDefunto;
 		int i, j;
 
 		for(i = 0; i < l; i++)
@@ -466,6 +466,7 @@ public class Simulador
 					vPresa = ContaVizinhosR1(mapa_atual, PRESA, i, j);
 					vPredador = ContaVizinhosR1(mapa_atual, PREDADOR, i, j);
 					vReciclador = ContaVizinhosR1(mapa_atual, RECICLADOR, i, j);
+					vDefunto = ContaVizinhosR1(mapa_atual, DEFUNTO, i, j);
 
 					if( (vPresa == 3) && (vPredador == 0))
 						mapa_prox[i][j] = new Celula(PRESA, 20);
@@ -473,7 +474,7 @@ public class Simulador
 					else if( (vPredador == 3) && (vPresa == 0) )
 						mapa_prox[i][j] = new Celula(PREDADOR, 20);
 
-					if(vReciclador == 3)
+					if((vReciclador == 3) && (vDefunto > 0))
 						mapa_prox[i][j] = new Celula(RECICLADOR, 20);
 				}
 	}
