@@ -1,9 +1,22 @@
 Predador:
-	Se presa em raio 1, come-a;
+	Se presa em raio 1, come-a (restaura vida);
 	Se vida = 0, morre;
-	Se presa em raio 2, segue-a;
-	Se nenhuma das anteriores, anda aleatório.
+	Se presa em raio 2, segue-a (vida --);
+	Se nenhuma das anteriores, anda aleatório (vida --).
 
-Recilcador: Se ver defunto em R=1 ou R=2 move-se para ele e reclicla.
-	    Se não acha defunto, anda aleatóro
-	    Morre se ficar sem vida
+Recilcador: 
+	    Se defunto em raio 2 move-se em direção a ele (vida --).
+	    Se defunto em raio 1 move-se pra ele e recilca (restaura vida)
+	    Se não acha defunto, anda aleatóro (vida --)
+	    Se vida  = 0, morre.
+
+Presa:
+	Se possue 4 ou mais vizinhos presa, morre de fome;
+	Se presas >= predadores, anda aleatório (vida --);
+	Se predadores > presas, morre;
+
+Defunto:
+	Espera ser recilcado;
+
+Nada:
+	Campo vazio.
