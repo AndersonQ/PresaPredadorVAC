@@ -335,6 +335,7 @@ public class Simulador
 					if(nVizinhosR2 != 0)
 					{
 						int x, y, andaX, andaY;
+						andaX = andaY = 0;
 						
 						cel = r.nextInt(nVizinhosR2);
 						x = vizinhosR2[cel*2];
@@ -391,7 +392,8 @@ public class Simulador
 	 */
 	int[] EncontraVizinho(int l, int c, int tipo, int raio, Celula maps[][])
 	{	
-		ArrayList<int> lista = new ArrayList<int>();
+		int ret[];
+		ArrayList<Integer> lista = new ArrayList<Integer>();
 		if(raio == 1)
 		{
 
@@ -410,10 +412,14 @@ public class Simulador
 				}
 			if(posValida(l - 1, c + 1))
 				if(maps[l - 1][c + 1].tipo == tipo)
-					cont++;
+				{
+					lista.add(l);
+					lista.add(c);
+				}
+
 			if(posValida(l, c - 1))
 				if(maps[l][c - 1].tipo == tipo)
-					{
+				{
 					lista.add(l);
 					lista.add(c);
 				}
@@ -542,7 +548,13 @@ public class Simulador
 					lista.add(c);
 				}
 		}
-		return lista.toArray();
+
+		ret = new int[lista.size()];
+
+		for(int i = 0; i < lista.size(); i++)
+			ret[i] = lista.get(i);
+
+		return ret;
 	}
 
 
