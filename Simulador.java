@@ -76,6 +76,7 @@ public class Simulador
 				}
 				System.out.printf("\n");
 			}
+			System.out.printf("\n\n");
 
 			try
 			{
