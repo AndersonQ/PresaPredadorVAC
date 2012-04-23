@@ -30,6 +30,7 @@ public class Simulador
 
 	protected Celula[][] mapa_atual, mapa_prox;
 	protected int l, c;
+	protected boolean h;
 	Random r;
 
 	public void Faz_Tudo(String arq)
@@ -68,6 +69,7 @@ public class Simulador
 			processaPredador();
 			processaPresa();
 			processaReciclador();
+			ContaTudo();
 
 			for(int i = 0; i < l; i++)
 			{
@@ -675,6 +677,26 @@ public class Simulador
 	 */
 	int[] ContaTudo()
 	{
+		FileWriter wr;
+		PrintWriter pw;
+
+		wr = null;
+		pw = null;
+		try{
+
+			wr = new FileWriter("resultado.txt", true);
+			pw = new PrintWriter(wr, true);
+		}
+		catch(Exception e)
+		{
+		}
+
+		if(!h)
+		{
+			pw.printf("Presa, Predador, Reciclador, Vazio\n");
+			h = true;
+		}
+
 		int presa, predador, reciclador, nada, ret[];
 		ret = new int[4];
 		
@@ -697,6 +719,8 @@ public class Simulador
 		ret[1] = predador;
 		ret[2] = reciclador;
 		ret[3] = nada;
+
+		pw.printf("%d,%d,%d,%d\n", ret[0], ret[1], ret[2], ret[3]);
 
 		return ret;
 	}
