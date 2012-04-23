@@ -17,4 +17,18 @@
  * =====================================================================================
  */
 
+import java.io.*;
 
+public class Simulador
+{
+	public static final int NADA = 0;
+	public static final int PRESA = 1;
+	public static final int PREDADOR = 2;
+	public static final int DEFUNTO = 3;
+	public static final int RECICLADOR = 4;
+
+	int ContaVizinhos(int[][] mapa, int tipo)
+	{
+	}
+
+}
