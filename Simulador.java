@@ -372,20 +372,23 @@ public class Simulador
 					int nVizinhosR1, nVizinhosR2, vizinhosR1[], vizinhosR2[], cel;
 
 					vizinhosR1 = EncontraVizinho(i, j, RECICLADOR, 1, mapa_atual);
-					nVizinhosR1 = vizinhosR1.length;
+					nVizinhosR1 = vizinhosR1.length / 2;
 
 					vizinhosR2 = EncontraVizinho(i, j, RECICLADOR, 2, mapa_atual);
-					nVizinhosR2 = vizinhosR2.length;
+					nVizinhosR2 = vizinhosR2.length / 2;
 
-					if(nVizinhosR1 != 0)
+					if(--mapa_atual[i][j].vida == 0)
+						mapa_prox[i][j] = new Celula(DEFUNTO, 0);
+
+					//Recicla
+					else if(nVizinhosR1 != 0)
 					{
 						cel = r.nextInt(nVizinhosR1);
-						mapa_prox[vizinhosR1[cel*2]][vizinhosR1[cel*2+1]].tipo = NADA;
-
-						return;
+						mapa_prox[vizinhosR1[cel*2]][vizinhosR1[cel*2+1]] = 
+						       new Celula(RECICLADOR, 20);
 					}
-
-					if(nVizinhosR2 != 0)
+					//Anda
+					else if(nVizinhosR2 != 0)
 					{
 						int x, y, andaX, andaY;
 						andaX = andaY = 0;
@@ -408,7 +411,7 @@ public class Simulador
 						else if(y == c)
 							andaY = 0;
 
-						mapa_prox[l + andaX][c + andaY] = new Celula(RECICLADOR, mapa_atual[i][j].vida);
+						mapa_prox[l + andaX][c + andaY] = new Celula(RECICLADOR, mapa_atual[i][j].vida - 1);
 					}
 				}
 			}
