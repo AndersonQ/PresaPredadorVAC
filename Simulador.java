@@ -155,28 +155,35 @@ public class Simulador
 			{
 				if(mapa_atual[i][j].tipo == PRESA)
 				{
-					vPresa = ContaVizinhosR1(mapa_atual, PRESA, i, j);
-					vPredador = ContaVizinhosR1(mapa_atual, PREDADOR, i, j);
-
-					/* Morre */
-					if((vPresa >= 4) || (vPredador > vPresa))
-						mapa_prox[i][j] = new Celula(DEFUNTO, 0);
-
-					/* Anda */
-					if(vPredador >= vPresa)
+					if(--mapa_atual[i][j].vida == 0)
 					{
-						x = r.nextInt(2);
-						y = r.nextInt(2);
+						mapa_prox[i][j] = new Celula(DEFUNTO, 0);
+					}
+					else
+					{
+						vPresa = ContaVizinhosR1(mapa_atual, PRESA, i, j);
+						vPredador = ContaVizinhosR1(mapa_atual, PREDADOR, i, j);
 
-						/* Calcula o sinal */
-						if(r.nextBoolean())
-							x = -x;
-						if(r.nextBoolean())
-							y = -y;
+						/* Morre */
+						if((vPresa >= 4) || (vPredador > vPresa))
+							mapa_prox[i][j] = new Celula(DEFUNTO, 0);
 
-						if(posValida(i + x, j + y))
-							if(mapa_prox[i + x][j + y].tipo == NADA)
-								mapa_prox[i + x][j + y] = new Celula(PRESA, mapa_prox[i][j].vida);
+						/* Anda */
+						if(vPredador >= vPresa)
+						{
+							x = r.nextInt(2);
+							y = r.nextInt(2);
+
+							/* Calcula o sinal */
+							if(r.nextBoolean())
+								x = -x;
+							if(r.nextBoolean())
+								y = -y;
+
+							if(posValida(i + x, j + y))
+								if(mapa_prox[i + x][j + y].tipo == NADA)
+									mapa_prox[i + x][j + y] = new Celula(PRESA, mapa_prox[i][j].vida - 1);
+						}
 					}
 				}
 			}
