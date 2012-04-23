@@ -217,6 +217,17 @@ public class Simulador
 				}
 	}
 
+	/*
+	 * Recebe uma célula, um tipo de célula e sua posição,
+	 * então retorna o primeiro vizinho -- do tipo recebido --
+	 * que foi encontrado
+	 */
+	int[] EncontraVizinho(Celula cel, int x, int y, int raio)
+	{
+	
+	}
+
+
 	boolean posValida(int lin, int col)
 	{
 		if( ((lin >= 0 ) && (col >= 0)) && ((lin < l) && (col < c)) )
