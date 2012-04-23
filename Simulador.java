@@ -36,7 +36,7 @@ public class Simulador
 	{
 		Leitor le;
 		Celula[][] mapa_lido;
-		int[][] mundo_int;
+		int[][] mundo_int = null;
 		int l,c;
 
 		le = new Leitor();
@@ -52,7 +52,7 @@ public class Simulador
 		l = le.Getl();
 		c = le.Getc();
 
-		mapa_lido = mIntTomCelula(l, c, mundo_int);
+		mapa_lido = mIntTomCelula(mundo_int, l, c);
 
 
 	}
