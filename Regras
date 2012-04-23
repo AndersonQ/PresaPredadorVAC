@@ -19,4 +19,7 @@ Defunto:
 	Espera ser recilcado;
 
 Nada:
-	Campo vazio.
+	Se presas = 3 e predador = 0, vira presa;
+	Se predadores = 3 e presa = 0, vira predador;
+	Se reciclador = 3 e defunto = 0, vira recilcador;
+
