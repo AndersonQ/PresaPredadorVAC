@@ -182,7 +182,9 @@ public class Simulador
 
 							if(posValida(i + x, j + y))
 								if(mapa_prox[i + x][j + y].tipo == NADA)
-									mapa_prox[i + x][j + y] = new Celula(PRESA, mapa_prox[i][j].vida - 1);
+									mapa_prox[i + x][j + y] = new Celula(PRESA, mapa_atual[i][j].vida);
+								else
+									mapa_prox[i][j] = new Celula(PRESA, mapa_atual[i][j].vida);
 						}
 					}
 				}
@@ -192,18 +194,114 @@ public class Simulador
 	void ProcessaPredador()
 	{
 		int vPresa, vPredador;
-		int i, j;
+		int i, j, px, py, k, nx, ny;
+		int[] presas;
+		boolean ok = false;
 
 		for(i = 0; i < l; i++)
 			for(j = 0; j < c; j++)
 				if(mapa_atual[i][j].tipo == PREDADOR)
 				{
+					ok = false;
 					if(--mapa_atual[i][j].vida == 0)
 						mapa_prox[i][j] = new Celula(DEFUNTO, 0);
 					else
 					{
-						vPresa = ContaVizinhosR1(mapa_atual, PRESA);
+						/* Procura presa em R = 2 */
+						vPresa = ContaVizinhosR2(mapa_atual, PRESA, i, j);
 						if (vPresa > 0)
+						{
+							presas = EncontraVizinho(i, j, PRESA, 2, mapa_atual);
+							k = 0;
+							while(k < presas.length)
+							{
+								px = presas[k++];
+								py = presas[k++];
+
+								if(px > i)
+									nx = i + 1;
+								else if(px < i)
+									nx = i - 1;
+								else
+									nx = i;
+
+								if(py > j)
+									ny = j + 1;
+								else if (py < j)
+									ny = j - 1;
+								else
+									ny = j;
+
+								if(posValida(nx, ny))
+									if(mapa_prox[nx][ny].tipo == NADA)
+									{
+										mapa_prox[nx][ny] = new Celula(PREDADOR, mapa_atual[i][j].vida);
+										ok = true;
+										break;
+									}
+
+							}
+							if(ok == false)
+							{
+								mapa_prox[i][j] = new Celula(PREDADOR, mapa_atual[i][j].vida);
+								ok = true;
+							}
+						}
+
+						/* Procura presa em R = 1 */
+						vPresa = ContaVizinhosR1(mapa_atual, PRESA, i, j);
+						if((vPresa > 0) && (ok == false))
+						{
+							presas = EncontraVizinho(i, j, PRESA, 2, mapa_atual);
+							k = 0;
+							while(k < presas.length)
+							{
+								px = presas[k++];
+								py = presas[k++];
+
+								if(px > i)
+									nx = i + 1;
+								else if(px < i)
+									nx = i - 1;
+								else
+									nx = i;
+
+								if(py > j)
+									ny = j + 1;
+								else if (py < j)
+									ny = j - 1;
+								else
+									ny = j;
+
+								if(posValida(nx, ny))
+								{
+									mapa_atual[nx][ny].vida = 0;
+									mapa_prox[nx][ny] = new Celula(PREDADOR, 20);
+									ok = true;
+									break;
+								}
+							}
+						}
+
+						/* Anda aleatório */
+						if(ok = false)
+						{
+							/* Anda */
+							nx = r.nextInt(2);
+							ny = r.nextInt(2);
+
+							/* Calcula o sinal */
+							if(r.nextBoolean())
+								nx = -nx;
+							if(r.nextBoolean())
+								ny = -ny;
+
+							if(posValida(i + nx, j + ny))
+								if(mapa_prox[i + nx][j + ny].tipo == NADA)
+									mapa_prox[i + nx][j + ny] = new Celula(PREDADOR, mapa_prox[i][j].vida);
+								else
+									mapa_prox[i][j] = new Celula(PREDADOR, mapa_atual[i][j].vida);
+						}
 
 					}
 				}
