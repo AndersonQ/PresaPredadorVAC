@@ -38,6 +38,7 @@ public class Simulador
 		Celula[][] mapa_lido;
 		int[][] mundo_int = null;
 		int resposta = 42;
+		int t = 0;
 
 		le = new Leitor();
 		try
@@ -76,11 +77,11 @@ public class Simulador
 				}
 				System.out.printf("\n");
 			}
-			System.out.printf("\n\n");
+			System.out.printf("\n%d\n", t++);
 
 			try
 			{
-				Thread.sleep(1000);
+				Thread.sleep(2000);
 			}
 			catch(Exception e)
 			{
