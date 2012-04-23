@@ -30,7 +30,7 @@ public class Teste
 		try
 		{
 			le = new Leitor();
-			mundo = le.LerArquivo("./mapa01");
+			mundo = le.LerArquivo(args[0]);
 		}
 		catch(Exception e)
 		{
@@ -53,7 +53,7 @@ public class Teste
 
 		System.out.printf("\n\nCOMEÇANDO O TESTE SÉRIO!!\n\n");
 		s = new Simulador();
-		s.Faz_Tudo("./mapa01");
+		s.Faz_Tudo(args[0]);
 
 	}
 }

@@ -63,7 +63,7 @@ public class Simulador
 			for(int k1 = 0; k1 < l; k1 ++)
 				for(int k2  = 0; k2 < c; k2 ++)
 					mapa_prox[k1][k2] = new Celula(NADA, 0);
-
+			processaDefunto();
 			processaNada();
 			processaPresa();
 			processaPredador();
@@ -81,7 +81,7 @@ public class Simulador
 
 			try
 			{
-				Thread.sleep(2000);
+				Thread.sleep(1000);
 			}
 			catch(Exception e)
 			{
@@ -226,24 +226,30 @@ public class Simulador
 						/* Morre */
 						if((vPresa >= 4) || (vPredador > vPresa))
 							mapa_prox[i][j] = new Celula(DEFUNTO, 0);
-
-						/* Anda */
-						if(vPredador >= vPresa)
+						else
 						{
-							x = r.nextInt(2);
-							y = r.nextInt(2);
+							/* Anda */
+							if(vPresa >= vPredador)
+							{
+								x = r.nextInt(2);
+								y = r.nextInt(2);
 
-							/* Calcula o sinal */
-							if(r.nextBoolean())
-								x = -x;
-							if(r.nextBoolean())
-								y = -y;
+								/* Calcula o sinal */
+								if(r.nextBoolean())
+									x = -x;
+								if(r.nextBoolean())
+									y = -y;
 
-							if(posValida(i + x, j + y))
-								if(mapa_prox[i + x][j + y].tipo == NADA)
-									mapa_prox[i + x][j + y] = new Celula(PRESA, mapa_atual[i][j].vida);
+								if(posValida(i + x, j + y))
+									if(mapa_prox[i + x][j + y].tipo == NADA)
+										mapa_prox[i + x][j + y] = new Celula(PRESA, mapa_atual[i][j].vida);
+									else
+										mapa_prox[i][j] = new Celula(PRESA, mapa_atual[i][j].vida);
 								else
 									mapa_prox[i][j] = new Celula(PRESA, mapa_atual[i][j].vida);
+							}
+							else
+								mapa_prox[i][j] = new Celula(PRESA, mapa_atual[i][j].vida);
 						}
 					}
 				}
@@ -447,6 +453,15 @@ public class Simulador
 					if(vReciclador == 3)
 						mapa_prox[i][j] = new Celula(RECICLADOR, 20);
 				}
+	}
+
+	void processaDefunto()
+	{
+		int i, j;
+		for(i = 0; i < l; i++)
+			for(j = 0; j < c; j++)
+				if((mapa_atual[i][j].tipo == DEFUNTO)&&((mapa_prox[i][j].tipo == DEFUNTO)||(mapa_prox[i][j].tipo == NADA)))
+					mapa_prox[i][j] = new Celula(DEFUNTO, 0);
 	}
 
 	/*
