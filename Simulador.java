@@ -191,6 +191,22 @@ public class Simulador
 
 	void ProcessaPredador()
 	{
+		int vPresa, vPredador;
+		int i, j;
+
+		for(i = 0; i < l; i++)
+			for(j = 0; j < c; j++)
+				if(mapa_atual[i][j].tipo == PREDADOR)
+				{
+					if(--mapa_atual[i][j].vida == 0)
+						mapa_prox[i][j] = new Celula(DEFUNTO, 0);
+					else
+					{
+						vPresa = ContaVizinhosR1(mapa_atual, PRESA);
+						if (vPresa > 0)
+
+					}
+				}
 	}
 
 	void processaNada()
