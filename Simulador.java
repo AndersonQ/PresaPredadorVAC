@@ -71,6 +71,62 @@ public class Simulador
 		return cont;
 	}
 
+	int ContaVizinhosR2(Celula[][] mapa, int tipo, int l, int c)
+	{
+		int cont = 0;
+
+		if(posValida(l - 2, c - 2))
+			if(mapa[l - 2][c - 2].tipo == tipo)
+				cont ++;
+		if(posValida(l - 2, c - 1))
+			if(mapa[l - 2][c - 1].tipo == tipo)
+				cont ++;
+		if(posValida(l - 2, c))
+			if(mapa[l - 2][c].tipo == tipo)
+				cont ++;
+		if(posValida(l - 2, c + 1))
+			if(mapa[l - 2][c + 1].tipo == tipo)
+				cont ++;
+		if(posValida(l - 2, c + 2))
+			if(mapa[l - 2][c + 2].tipo == tipo)
+				cont ++;
+		if(posValida(l - 1, c - 2))
+			if(mapa[l - 1][c - 2].tipo == tipo)
+				cont ++;
+		if(posValida(l - 1, c + 2))
+			if(mapa[l - 1][c + 2].tipo == tipo)
+				cont ++;
+		if(posValida(l, c - 2))
+			if(mapa[l][c - 2].tipo == tipo)
+				cont ++;
+		if(posValida(l, c + 2))
+			if(mapa[l][c + 2].tipo == tipo)
+				cont ++;
+		if(posValida(l + 1, c - 2))
+			if(mapa[l + 1][c - 2].tipo == tipo)
+				cont ++;
+		if(posValida(l + 1, c + 2))
+			if(mapa[l + 1][c + 2].tipo == tipo)
+				cont ++;
+		if(posValida(l + 2, c - 2))
+			if(mapa[l + 2][c - 2].tipo == tipo)
+				cont ++;
+		if(posValida(l + 2, c - 1))
+			if(mapa[l + 2][c - 1].tipo == tipo)
+				cont ++;
+		if(posValida(l + 2, c))
+			if(mapa[l + 2][c].tipo == tipo)
+				cont ++;
+		if(posValida(l + 2, c + 1))
+			if(mapa[l + 2][c + 1].tipo == tipo)
+				cont ++;
+		if(posValida(l + 2, c + 2))
+			if(mapa[l + 2][c + 2].tipo == tipo)
+				cont ++;
+
+		return cont;
+	}
+
 	Celula[][] mIntTomCelula(int[][] mapa, int l, int c)
 	{
 		int i, j;
