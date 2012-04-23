@@ -38,6 +38,7 @@ public class Simulador
 		Celula[][] mapa_lido;
 		int[][] mundo_int = null;
 		int l,c;
+		int resposta = 42;
 
 		le = new Leitor();
 		try
@@ -53,6 +54,25 @@ public class Simulador
 		c = le.Getc();
 
 		mapa_lido = mIntTomCelula(mundo_int, l, c);
+
+		mapa_atual = mapa_lido;
+		while(resposta == 42)
+		{
+			mapa_prox = new Celula[l][c];
+			processaNada();
+			processaPresa();
+			processaPredador();
+			processaReciclador();
+			try
+			{
+				Thread.sleep(1000);
+			}
+			catch(Exception e)
+			{
+				e.printStackTrace();
+			}
+			mapa_atual = mapa_prox;
+		}
 	}
 
 	Simulador()
@@ -168,7 +188,7 @@ public class Simulador
 	 * Morre: Predadores > presas
 	 * Anda : vPresas >= vPredadores 
 	 */
-	void processaPresas()
+	void processaPresa()
 	{
 		int i, j;
 		int vPresa, vPredador, x, y;
@@ -214,7 +234,7 @@ public class Simulador
 			}
 	}
 
-	void ProcessaPredador()
+	void processaPredador()
 	{
 		int vPresa, vPredador;
 		int i, j, px, py, k, nx, ny;
@@ -330,7 +350,7 @@ public class Simulador
 				}
 	}
 
-	void ProcessaReciclador()
+	void processaReciclador()
 	{
 		int vPresa, vPredador, vReciclador;
 
