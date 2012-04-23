@@ -627,4 +627,33 @@ public class Simulador
 		return false;
 	}
 
+	/*
+	 * Conta e retorna a quantidade
+	 * de cada tipo de célula
+	 * vetor de retorno: 	[0] -> presa
+	 * 			[1] -> predadores
+	 * 			[2] -> recicladores
+	 * 			[3] -> nada
+	 */
+	int[] ContaTudo()
+	{
+		int presa, predador, reciclador, nada;
+		
+		presa = predador = reciclador = 0;
+
+		for(int i = 0; i < l; i++)
+			for(int j = 0; j < c; j++)
+			{
+				if(mapa_atual[i][j].tipo == PRESA)
+					presa++;
+				else if(mapa_atual[i][j].tipo == PREDADOR)
+					predador++;
+				else if(mapa_atual[i][j].tipo == RECICLADOR)
+					reciclador++;
+			}
+
+		nada = l * c - presa - predador - reciclador;
+
+		return null;
+	}
 }
