@@ -311,23 +311,23 @@ public class Simulador
 	{
 		int vPresa, vPredador, vReciclador;
 
-		for(int = 0; i < l; i++)
+		for(int i = 0; i < l; i++)
 			for(int j = 0; j < c; j++)
 			{
 				if(mapa_atual[i][j].tipo == RECICLADOR)
 				{
 					int nVizinhosR1, nVizinhosR2, vizinhosR1[], vizinhosR2[], cel;
 
-					vizinhosR1 = EncontraVizinho(i, j, RECICLADOR, 1, Celula mapa_atual);
-					nVizinhosR1 = vizinhosR1.length();
+					vizinhosR1 = EncontraVizinho(i, j, RECICLADOR, 1, mapa_atual);
+					nVizinhosR1 = vizinhosR1.length;
 
-					vizinhosR2 = EncontraVizinho(i, j, RECICLADOR, 2, Celula mapa_atual);
-					nVizinhosR2 = vizinhosR2.length();
+					vizinhosR2 = EncontraVizinho(i, j, RECICLADOR, 2, mapa_atual);
+					nVizinhosR2 = vizinhosR2.length;
 
 					if(nVizinhosR1 != 0)
 					{
 						cel = r.nextInt(nVizinhosR1);
-						mapa_prox[vizinhosR1[cel*2]][vizinhosR1[cel*2+1]].topo = NADA;
+						mapa_prox[vizinhosR1[cel*2]][vizinhosR1[cel*2+1]].tipo = NADA;
 
 						return;
 					}
@@ -354,7 +354,7 @@ public class Simulador
 						else if(y == c)
 							andaY = 0;
 
-						mapa_prox[l + andaX][c + andaY] = RECICLADOR;
+						mapa_prox[l + andaX][c + andaY] = new Celula(RECICLADOR, mapa_atual[i][j].vida);
 					}
 				}
 			}
@@ -391,7 +391,7 @@ public class Simulador
 	 */
 	int[] EncontraVizinho(int l, int c, int tipo, int raio, Celula maps[][])
 	{	
-		ArrayList<int> lista = new ArrayList();
+		ArrayList<int> lista = new ArrayList<int>();
 		if(raio == 1)
 		{
 
