@@ -675,7 +675,8 @@ public class Simulador
 	 */
 	int[] ContaTudo()
 	{
-		int presa, predador, reciclador, nada;
+		int presa, predador, reciclador, nada, ret[];
+		ret = new int[4];
 		
 		presa = predador = reciclador = 0;
 
@@ -692,6 +693,11 @@ public class Simulador
 
 		nada = l * c - presa - predador - reciclador;
 
-		return null;
+		ret[0] = presa;
+		ret[1] = predador;
+		ret[2] = reciclador;
+		ret[3] = nada;
+
+		return ret;
 	}
 }
