@@ -414,8 +414,9 @@ public class Simulador
 							andaY = c - 1;
 						else if(y == c)
 							andaY = 0;
-
-						mapa_prox[l + andaX][c + andaY] = new Celula(RECICLADOR, mapa_atual[i][j].vida - 1);
+						
+						if(i < l && j < c)
+							mapa_prox[i + andaX][j + andaY] = new Celula(RECICLADOR, mapa_atual[i][j].vida - 1);
 					}
 				}
 			}
