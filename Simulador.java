@@ -27,8 +27,16 @@ public class Simulador
 	public static final int DEFUNTO = 3;
 	public static final int RECICLADOR = 4;
 
-	int ContaVizinhos(int[][] mapa, int tipo)
+	int ContaVizinhos(Celula[][] mapa, int tipo, int l, int c)
 	{
+		int i, j, cont = 0;
+
+		for(i = 0; i < l; i++)
+			for(j = 0; j < c; j++)
+				if(mapa[i][j].tipo == tipo)
+					cont++;
+
+		return cont;
 	}
 
 }
