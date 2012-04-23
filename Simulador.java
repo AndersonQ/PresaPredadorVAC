@@ -211,6 +211,63 @@ public class Simulador
 
 	void ProcessaReciclador()
 	{
+		int vPresa, vPredador, vReciclador;
+
+		for(int = 0; i < l; i++)
+			for(int j = 0; j < c; j++)
+			{
+				if(mapa_atual[i][j].tipo == RECICLADOR)
+				{
+					int nVizinhosR1, nVizinhosR2, vizinhosR1[], vizinhosR2[], cel;
+
+					vizinhosR1 = EncontraVizinho(i, j, RECICLADOR, 1, Celula mapa_atual);
+					nVizinhosR1 = vizinhosR1.length();
+
+					vizinhosR2 = EncontraVizinho(i, j, RECICLADOR, 2, Celula mapa_atual);
+					nVizinhosR2 = vizinhosR2.length();
+
+					if(nVizinhosR1 != 0)
+					{
+						cel = r.nextInt(nVizinhosR1);
+						mapa_prox[vizinhosR1[cel*2]][vizinhosR1[cel*2+1]].topo = NADA;
+
+						return;
+					}
+
+					if(nVizinhosR2 != 0)
+					{
+						int x, y, andaX, andaY;
+						
+						cel = r.nextInt(nVizinhosR2);
+						x = vizinhosR2[cel*2];
+						y = vizinhosR2[cel * 2 + 1];
+
+						if(x > l)
+							andaX = l + 1;
+						else if(x < l)
+							andaX = l - 1;
+						else if(x == l)
+							andaX = 0;
+
+						if(y > c)
+							andaY = c + 1;
+						else if(y < c)
+							andaY = c - 1;
+						else if(y == c)
+							andaY = 0;
+
+						mapa_prox[l + andaX][c + andaY] = RECICLADOR;
+					}
+				}
+			}
+	}
+
+							
+
+
+
+
+
 	}
 
 	void processaNada()
