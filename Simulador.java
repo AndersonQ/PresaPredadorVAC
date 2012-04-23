@@ -65,8 +65,8 @@ public class Simulador
 					mapa_prox[k1][k2] = new Celula(NADA, 0);
 			processaDefunto();
 			processaNada();
-			processaPresa();
 			processaPredador();
+			processaPresa();
 			processaReciclador();
 
 			for(int i = 0; i < l; i++)
@@ -81,7 +81,7 @@ public class Simulador
 
 			try
 			{
-				Thread.sleep(500);
+				Thread.sleep(1000);
 			}
 			catch(Exception e)
 			{
@@ -272,6 +272,41 @@ public class Simulador
 						mapa_prox[i][j] = new Celula(DEFUNTO, 0);
 					else
 					{
+						/* Procura presa em R = 1 */
+						vPresa = ContaVizinhosR1(mapa_atual, PRESA, i, j);
+						if((vPresa > 0) && (ok == false))
+						{
+							presas = EncontraVizinho(i, j, PRESA, 1, mapa_atual);
+							k = 0;
+							while(k < presas.length)
+							{
+								px = presas[k++];
+								py = presas[k++];
+
+								if(px > i)
+									nx = i + 1;
+								else if(px < i)
+									nx = i - 1;
+								else
+									nx = i;
+
+								if(py > j)
+									ny = j + 1;
+								else if (py < j)
+									ny = j - 1;
+								else
+									ny = j;
+
+								if(posValida(nx, ny))
+								{
+									mapa_atual[nx][ny].vida = 0;
+									mapa_prox[i][j] = new Celula(PREDADOR, 20);
+									ok = true;
+									break;
+								}
+							}
+						}
+
 						/* Procura presa em R = 2 */
 						vPresa = ContaVizinhosR2(mapa_atual, PRESA, i, j);
 						if (vPresa > 0)
@@ -304,52 +339,14 @@ public class Simulador
 										ok = true;
 										break;
 									}
-
-							}
-							if(ok == false)
-							{
-								mapa_prox[i][j] = new Celula(PREDADOR, mapa_atual[i][j].vida);
-								ok = true;
-							}
-						}
-
-						/* Procura presa em R = 1 */
-						vPresa = ContaVizinhosR1(mapa_atual, PRESA, i, j);
-						if((vPresa > 0) && (ok == false))
-						{
-							presas = EncontraVizinho(i, j, PRESA, 2, mapa_atual);
-							k = 0;
-							while(k < presas.length)
-							{
-								px = presas[k++];
-								py = presas[k++];
-
-								if(px > i)
-									nx = i + 1;
-								else if(px < i)
-									nx = i - 1;
 								else
-									nx = i;
+									mapa_prox[i][j] = new Celula(PREDADOR, mapa_atual[i][j].vida);
 
-								if(py > j)
-									ny = j + 1;
-								else if (py < j)
-									ny = j - 1;
-								else
-									ny = j;
-
-								if(posValida(nx, ny))
-								{
-									mapa_atual[nx][ny].vida = 0;
-									mapa_prox[nx][ny] = new Celula(PREDADOR, 20);
-									ok = true;
-									break;
-								}
 							}
 						}
 
 						/* Anda aleatório */
-						if(ok = false)
+						if(ok == false)
 						{
 							/* Anda */
 							nx = r.nextInt(2);
