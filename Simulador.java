@@ -189,6 +189,30 @@ public class Simulador
 			}
 	}
 
+	void processaNada()
+	{
+		int vPresa, vPredador, vReciclador;
+		int i, j;
+
+		for(i = 0; i < l; i++)
+			for(j = 0; j < c; j++)
+				if(mapa_atual[i][j].tipo == NADA)
+				{
+					vPresa = ContaVizinhosR1(mapa_atual, PRESA, i, j);
+					vPredador = ContaVizinhosR1(mapa_atual, PREDADOR, i, j);
+					vReciclador = ContaVizinhosR1(mapa_atual, RECICLADOR, i, j);
+
+					if( (vPresa == 3) && (vPredador == 0))
+						mapa_prox[i][j] = new Celula(PRESA, 20);
+
+					else if( (vPredador == 3) && (vPresa == 0) )
+						mapa_prox[i][j] = new Celula(PREDADOR, 20);
+
+					if(vReciclador == 3)
+						mapa_prox[i][j] = new Celula(RECICLADOR, 20);
+				}
+	}
+
 	boolean posValida(int lin, int col)
 	{
 		if( ((lin >= 0 ) && (col >= 0)) && ((lin < l) && (col < c)) )
