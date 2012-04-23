@@ -209,6 +209,10 @@ public class Simulador
 				}
 	}
 
+	void ProcessaReciclador()
+	{
+	}
+
 	void processaNada()
 	{
 		int vPresa, vPredador, vReciclador;
