@@ -37,7 +37,6 @@ public class Simulador
 		Leitor le;
 		Celula[][] mapa_lido;
 		int[][] mundo_int = null;
-		int l,c;
 		int resposta = 42;
 
 		le = new Leitor();
@@ -59,6 +58,11 @@ public class Simulador
 		while(resposta == 42)
 		{
 			mapa_prox = new Celula[l][c];
+
+			for(int k1 = 0; k1 < l; k1 ++)
+				for(int k2  = 0; k2 < c; k2 ++)
+					mapa_prox[k1][k2] = new Celula(NADA, 0);
+
 			processaNada();
 			processaPresa();
 			processaPredador();
