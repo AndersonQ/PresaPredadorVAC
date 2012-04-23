@@ -222,9 +222,160 @@ public class Simulador
 	 * então retorna o primeiro vizinho -- do tipo recebido --
 	 * que foi encontrado
 	 */
-	int[] EncontraVizinho(Celula cel, int x, int y, int raio)
-	{
-	
+	int[] EncontraVizinho(int l, int c, int tipo, int raio, Celula maps[][])
+	{	
+		ArrayList<int> lista = new ArrayList();
+		if(raio == 1)
+		{
+
+			//Raio 1
+			if(posValida(l - 1, c - 1))
+				if(maps[l - 1][c - 1].tipo == tipo)
+				{
+					lista.add(l);
+					lista.add(c);
+				}
+			if(posValida(l - 1, c))
+				if(maps[l - 1][c].tipo == tipo)
+					{
+					lista.add(l);
+					lista.add(c);
+				}
+			if(posValida(l - 1, c + 1))
+				if(maps[l - 1][c + 1].tipo == tipo)
+					cont++;
+			if(posValida(l, c - 1))
+				if(maps[l][c - 1].tipo == tipo)
+					{
+					lista.add(l);
+					lista.add(c);
+				}
+			if(posValida(l, c + 1))
+				if(maps[l][c + 1].tipo == tipo)
+					{
+					lista.add(l);
+					lista.add(c);
+				}
+			if(posValida(l + 1, c - 1))
+				if(maps[l + 1][c - 1].tipo == tipo)
+					{
+					lista.add(l);
+					lista.add(c);
+				}
+			if(posValida(l + 1, c))
+				if(maps[l + 1][c].tipo == tipo)
+					{
+					lista.add(l);
+					lista.add(c);
+				}
+			if(posValida(l + 1, c + 1))
+				if(maps[l + 1][c + 1].tipo == tipo)
+					{
+					lista.add(l);
+					lista.add(c);
+				}
+		}
+		else if(raio == 2)
+		{
+			// Raio 2
+			if(posValida(l - 2, c - 2))
+				if(maps[l - 2][c - 2].tipo == tipo)
+				{
+				lista.add(l);
+				lista.add(c);
+				}
+			if(posValida(l - 2, c - 1))
+				if(maps[l - 2][c - 1].tipo == tipo)
+					{
+					lista.add(l);
+					lista.add(c);
+				}
+			if(posValida(l - 2, c))
+				if(maps[l - 2][c].tipo == tipo)
+					{
+					lista.add(l);
+					lista.add(c);
+				}
+			if(posValida(l - 2, c + 1))
+				if(maps[l - 2][c + 1].tipo == tipo)
+				{
+					lista.add(l);
+					lista.add(c);
+				}
+			if(posValida(l - 2, c + 2))
+				if(maps[l - 2][c + 2].tipo == tipo)
+				{
+					lista.add(l);
+					lista.add(c);
+				}
+			if(posValida(l - 1, c - 2))
+				if(maps[l - 1][c - 2].tipo == tipo)
+				{
+					lista.add(l);
+					lista.add(c);
+				}
+			if(posValida(l - 1, c + 2))
+				if(maps[l - 1][c + 2].tipo == tipo)
+				{
+					lista.add(l);
+					lista.add(c);
+				}
+			if(posValida(l, c - 2))
+				if(maps[l][c - 2].tipo == tipo)
+				{
+					lista.add(l);
+					lista.add(c);
+				}
+			if(posValida(l, c + 2))
+				if(maps[l][c + 2].tipo == tipo)
+				{
+					lista.add(l);
+					lista.add(c);
+				}
+			if(posValida(l + 1, c - 2))
+				if(maps[l + 1][c - 2].tipo == tipo)
+				{
+					lista.add(l);
+					lista.add(c);
+				}
+			if(posValida(l + 1, c + 2))
+				if(maps[l + 1][c + 2].tipo == tipo)
+				{
+					lista.add(l);
+					lista.add(c);
+				}
+			if(posValida(l + 2, c - 2))
+				if(maps[l + 2][c - 2].tipo == tipo)
+					{
+					lista.add(l);
+					lista.add(c);
+				}
+			if(posValida(l + 2, c - 1))
+				if(maps[l + 2][c - 1].tipo == tipo)
+				{
+					lista.add(l);
+					lista.add(c);
+				}
+			if(posValida(l + 2, c))
+				if(maps[l + 2][c].tipo == tipo)
+					{
+					lista.add(l);
+					lista.add(c);
+				}
+			if(posValida(l + 2, c + 1))
+				if(maps[l + 2][c + 1].tipo == tipo)
+					{
+					lista.add(l);
+					lista.add(c);
+				}
+			if(posValida(l + 2, c + 2))
+				if(maps[l + 2][c + 2].tipo == tipo)
+				{
+					lista.add(l);
+					lista.add(c);
+				}
+		}
+		return lista.toArray();
 	}
 
 
