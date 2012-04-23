@@ -63,6 +63,16 @@ public class Simulador
 			processaPresa();
 			processaPredador();
 			processaReciclador();
+
+			for(int i = 0; i < l; i++)
+			{
+				for(int j = 0; j < c; j++)
+				{
+					System.out.print(mapa_atual[i][j].tipo + " ");
+				}
+				System.out.printf("\n");
+			}
+
 			try
 			{
 				Thread.sleep(1000);
