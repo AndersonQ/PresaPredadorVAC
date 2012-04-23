@@ -189,6 +189,10 @@ public class Simulador
 			}
 	}
 
+	void ProcessaPredador()
+	{
+	}
+
 	boolean posValida(int lin, int col)
 	{
 		if( ((lin >= 0 ) && (col >= 0)) && ((lin < l) && (col < c)) )
