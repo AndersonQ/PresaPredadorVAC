@@ -81,7 +81,7 @@ public class Simulador
 
 			try
 			{
-				Thread.sleep(1000);
+				Thread.sleep(500);
 			}
 			catch(Exception e)
 			{
@@ -363,9 +363,11 @@ public class Simulador
 
 							if(posValida(i + nx, j + ny))
 								if(mapa_prox[i + nx][j + ny].tipo == NADA)
-									mapa_prox[i + nx][j + ny] = new Celula(PREDADOR, mapa_prox[i][j].vida);
+									mapa_prox[i + nx][j + ny] = new Celula(PREDADOR, mapa_atual[i][j].vida);
 								else
 									mapa_prox[i][j] = new Celula(PREDADOR, mapa_atual[i][j].vida);
+							else
+								mapa_prox[i][j] = new Celula(PREDADOR, mapa_atual[i][j].vida);
 						}
 
 					}
@@ -374,7 +376,7 @@ public class Simulador
 
 	void processaReciclador()
 	{
-		int vPresa, vPredador, vReciclador;
+		//int vPresa, vPredador, vReciclador;
 
 		for(int i = 0; i < l; i++)
 			for(int j = 0; j < c; j++)
@@ -392,20 +394,19 @@ public class Simulador
 					//Morre
 					if(--mapa_atual[i][j].vida == 0)
 						mapa_prox[i][j] = new Celula(NADA, 0);
-
 					//Recicla
 					else if(nVizinhosR1 != 0)
 					{
 						cel = r.nextInt(nVizinhosR1);
-						if(mapa_prox[vizinhosR1[cel*2]][vizinhosR1[cel*2+1]].tipo == NADA)
+						if(mapa_prox[vizinhosR1[cel*2]][vizinhosR1[cel*2+1]].tipo == DEFUNTO)
 						       mapa_prox[vizinhosR1[cel*2]][vizinhosR1[cel*2+1]] = new Celula(RECICLADOR, 20);
 					}
-					//Anda
+					//Anda para defunto em R = 2
 					else if(nVizinhosR2 != 0)
 					{
 						int x, y, andaX, andaY;
 						andaX = andaY = 0;
-						
+
 						cel = r.nextInt(nVizinhosR2);
 						x = vizinhosR2[cel*2];
 						y = vizinhosR2[cel * 2 + 1];
@@ -414,18 +415,41 @@ public class Simulador
 							andaX = i + 1;
 						else if(x < i)
 							andaX = i - 1;
-						else if(x == i)
-							andaX = 0;
+						else
+							andaX = i;
 
 						if(y > j)
 							andaY = j + 1;
 						else if(y < j)
 							andaY = j - 1;
-						else if(y == j)
-							andaY = 0;
-						
-						if(i < l && j < c && mapa_prox[i + andaX][j + andaY].tipo == NADA)
-							mapa_prox[i + andaX][j + andaY] = new Celula(RECICLADOR, mapa_atual[i][j].vida - 1);
+						else
+							andaY = j;
+
+						if(posValida(andaX, andaY))
+							mapa_prox[andaX][andaY] = new Celula(RECICLADOR, mapa_atual[i][j].vida);
+
+					}
+					//Anda
+					else
+					{
+						int nx, ny;
+
+						nx = r.nextInt(2);
+						ny = r.nextInt(2);
+
+						/* Calcula o sinal */
+						if(r.nextBoolean())
+							nx = -nx;
+						if(r.nextBoolean())
+							ny = -ny;
+
+						if(posValida(i + nx, j + ny))
+							if(mapa_prox[i + nx][j + ny].tipo == NADA)
+								mapa_prox[i + nx][j + ny] = new Celula(RECICLADOR, mapa_atual[i][j].vida);
+							else
+									mapa_prox[i][j] = new Celula(RECICLADOR, mapa_atual[i][j].vida);
+						else
+							mapa_prox[i][j] = new Celula(RECICLADOR, mapa_atual[i][j].vida);
 					}
 				}
 			}
@@ -480,51 +504,51 @@ public class Simulador
 			if(posValida(l - 1, c - 1))
 				if(maps[l - 1][c - 1].tipo == tipo)
 				{
-					lista.add(l);
-					lista.add(c);
+					lista.add(l - 1);
+					lista.add(c - 1);
 				}
 			if(posValida(l - 1, c))
 				if(maps[l - 1][c].tipo == tipo)
 					{
-					lista.add(l);
+					lista.add(l - 1);
 					lista.add(c);
 				}
 			if(posValida(l - 1, c + 1))
 				if(maps[l - 1][c + 1].tipo == tipo)
 				{
-					lista.add(l);
-					lista.add(c);
+					lista.add(l - 1);
+					lista.add(c + 1);
 				}
 
 			if(posValida(l, c - 1))
 				if(maps[l][c - 1].tipo == tipo)
 				{
 					lista.add(l);
-					lista.add(c);
+					lista.add(c - 1);
 				}
 			if(posValida(l, c + 1))
 				if(maps[l][c + 1].tipo == tipo)
 					{
 					lista.add(l);
-					lista.add(c);
+					lista.add(c + 1);
 				}
 			if(posValida(l + 1, c - 1))
 				if(maps[l + 1][c - 1].tipo == tipo)
 					{
-					lista.add(l);
-					lista.add(c);
+					lista.add(l + 1);
+					lista.add(c - 1);
 				}
 			if(posValida(l + 1, c))
 				if(maps[l + 1][c].tipo == tipo)
 					{
-					lista.add(l);
+					lista.add(l + 1);
 					lista.add(c);
 				}
 			if(posValida(l + 1, c + 1))
 				if(maps[l + 1][c + 1].tipo == tipo)
 					{
-					lista.add(l);
-					lista.add(c);
+					lista.add(l + 1);
+					lista.add(c + 1);
 				}
 		}
 		else if(raio == 2)
@@ -533,98 +557,98 @@ public class Simulador
 			if(posValida(l - 2, c - 2))
 				if(maps[l - 2][c - 2].tipo == tipo)
 				{
-				lista.add(l);
-				lista.add(c);
+				lista.add(l - 2);
+				lista.add(c - 2);
 				}
 			if(posValida(l - 2, c - 1))
 				if(maps[l - 2][c - 1].tipo == tipo)
 					{
-					lista.add(l);
-					lista.add(c);
+					lista.add(l - 2);
+					lista.add(c - 1);
 				}
 			if(posValida(l - 2, c))
 				if(maps[l - 2][c].tipo == tipo)
 					{
-					lista.add(l);
+					lista.add(l - 2);
 					lista.add(c);
 				}
 			if(posValida(l - 2, c + 1))
 				if(maps[l - 2][c + 1].tipo == tipo)
 				{
-					lista.add(l);
-					lista.add(c);
+					lista.add(l - 2);
+					lista.add(c + 1);
 				}
 			if(posValida(l - 2, c + 2))
 				if(maps[l - 2][c + 2].tipo == tipo)
 				{
-					lista.add(l);
-					lista.add(c);
+					lista.add(l - 2);
+					lista.add(c + 2);
 				}
 			if(posValida(l - 1, c - 2))
 				if(maps[l - 1][c - 2].tipo == tipo)
 				{
-					lista.add(l);
-					lista.add(c);
+					lista.add(l - 1);
+					lista.add(c - 2);
 				}
 			if(posValida(l - 1, c + 2))
 				if(maps[l - 1][c + 2].tipo == tipo)
 				{
-					lista.add(l);
-					lista.add(c);
+					lista.add(l - 1);
+					lista.add(c + 2);
 				}
 			if(posValida(l, c - 2))
 				if(maps[l][c - 2].tipo == tipo)
 				{
 					lista.add(l);
-					lista.add(c);
+					lista.add(c - 2);
 				}
 			if(posValida(l, c + 2))
 				if(maps[l][c + 2].tipo == tipo)
 				{
 					lista.add(l);
-					lista.add(c);
+					lista.add(c + 2);
 				}
 			if(posValida(l + 1, c - 2))
 				if(maps[l + 1][c - 2].tipo == tipo)
 				{
-					lista.add(l);
-					lista.add(c);
+					lista.add(l + 1);
+					lista.add(c - 2);
 				}
 			if(posValida(l + 1, c + 2))
 				if(maps[l + 1][c + 2].tipo == tipo)
 				{
-					lista.add(l);
-					lista.add(c);
+					lista.add(l + 1);
+					lista.add(c + 2);
 				}
 			if(posValida(l + 2, c - 2))
 				if(maps[l + 2][c - 2].tipo == tipo)
 					{
-					lista.add(l);
-					lista.add(c);
+					lista.add(l + 2);
+					lista.add(c - 2);
 				}
 			if(posValida(l + 2, c - 1))
 				if(maps[l + 2][c - 1].tipo == tipo)
 				{
-					lista.add(l);
-					lista.add(c);
+					lista.add(l + 2);
+					lista.add(c - 1);
 				}
 			if(posValida(l + 2, c))
 				if(maps[l + 2][c].tipo == tipo)
 					{
-					lista.add(l);
+					lista.add(l + 2);
 					lista.add(c);
 				}
 			if(posValida(l + 2, c + 1))
 				if(maps[l + 2][c + 1].tipo == tipo)
 					{
-					lista.add(l);
-					lista.add(c);
+					lista.add(l + 2);
+					lista.add(c + 1);
 				}
 			if(posValida(l + 2, c + 2))
 				if(maps[l + 2][c + 2].tipo == tipo)
 				{
-					lista.add(l);
-					lista.add(c);
+					lista.add(l + 2);
+					lista.add(c + 2);
 				}
 		}
 
