@@ -32,6 +32,31 @@ public class Simulador
 	protected int l, c;
 	Random r;
 
+	public void main(String[] args)
+	{
+		Leitor le;
+		Celula[][] mapa_lido;
+		int[][] mundo_int;
+		int l,c;
+
+		le = new Leitor();
+		try
+		{
+			mundo_int = le.LerArquivo(args[1]);
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+
+		l = le.Getl();
+		c = le.Getc();
+
+		mapa_lido = mIntTomCelula(l, c, mundo_int);
+
+
+	}
+
 	Simulador()
 	{
 		mapa_atual = mapa_prox = null;
