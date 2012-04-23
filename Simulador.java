@@ -39,4 +39,16 @@ public class Simulador
 		return cont;
 	}
 
+	Celula[][] mIntTomCelula(int[][] mapa, int l, int c)
+	{
+		int i, j;
+		Celula[][] m;
+
+		m = new Celula[l][c];
+
+		for(i = 0; i < l; i++)
+			for(j = 0; j < c; j++)
+				m[i][j] = new Celula(mapa[i][j], 20);
+		return m;
+	}
 }
