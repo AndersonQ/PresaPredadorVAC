@@ -29,7 +29,7 @@ public class Simulador
 	public static final int RECICLADOR = 4;
 
 	protected Celula[][] mapa_atual, mapa_prox;
-	protected int l, c;
+	protected int l, c, tmp;
 	protected boolean h;
 	Random r;
 
@@ -673,7 +673,8 @@ public class Simulador
 	 * vetor de retorno: 	[0] -> presa
 	 * 			[1] -> predadores
 	 * 			[2] -> recicladores
-	 * 			[3] -> nada
+	 * 			[3] -> defunto
+	 * 			[4] -> nada
 	 */
 	int[] ContaTudo()
 	{
@@ -684,7 +685,7 @@ public class Simulador
 		pw = null;
 		try{
 
-			wr = new FileWriter("resultado.txt", true);
+			wr = new FileWriter("resultado.csv", true);
 			pw = new PrintWriter(wr, true);
 		}
 		catch(Exception e)
@@ -693,14 +694,15 @@ public class Simulador
 
 		if(!h)
 		{
-			pw.printf("Presa, Predador, Reciclador, Vazio\n");
+			pw.printf("Tempo, Presa, Predador, Reciclador, Defunto, Vazio\n");
 			h = true;
+			tmp = 0;
 		}
 
-		int presa, predador, reciclador, nada, ret[];
-		ret = new int[4];
+		int presa, predador, reciclador, defunto, nada, ret[];
+		ret = new int[5];
 		
-		presa = predador = reciclador = 0;
+		presa = predador = reciclador = defunto = 0;
 
 		for(int i = 0; i < l; i++)
 			for(int j = 0; j < c; j++)
@@ -711,6 +713,8 @@ public class Simulador
 					predador++;
 				else if(mapa_atual[i][j].tipo == RECICLADOR)
 					reciclador++;
+				else if(mapa_atual[i][j].tipo == DEFUNTO)
+					defunto++;
 			}
 
 		nada = l * c - presa - predador - reciclador;
@@ -718,9 +722,12 @@ public class Simulador
 		ret[0] = presa;
 		ret[1] = predador;
 		ret[2] = reciclador;
-		ret[3] = nada;
+		ret[3] = defunto;
+		ret[4] = nada;
 
-		pw.printf("%d,%d,%d,%d\n", ret[0], ret[1], ret[2], ret[3]);
+		pw.printf("%d,%d,%d,%d,%d, %d\n", tmp++, ret[0], ret[1], ret[2], ret[3], ret[4]);
+
+		pw.close();
 
 		return ret;
 	}
