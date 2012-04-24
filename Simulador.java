@@ -33,12 +33,11 @@ public class Simulador
 	protected boolean h;
 	Random r;
 
-	public void Faz_Tudo(String arq)
+	public void Faz_Tudo(String arq, int max)
 	{
 		Leitor le;
 		Celula[][] mapa_lido;
 		int[][] mundo_int = null;
-		int resposta = 42;
 		int t = 0;
 
 		le = new Leitor();
@@ -57,7 +56,7 @@ public class Simulador
 		mapa_lido = mIntTomCelula(mundo_int, l, c);
 
 		mapa_atual = mapa_lido;
-		while(resposta == 42)
+		while(t < max)
 		{
 			mapa_prox = new Celula[l][c];
 
@@ -83,7 +82,7 @@ public class Simulador
 
 			try
 			{
-				Thread.sleep(1000);
+				Thread.sleep(10);
 			}
 			catch(Exception e)
 			{

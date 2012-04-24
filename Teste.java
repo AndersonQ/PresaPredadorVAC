@@ -23,37 +23,19 @@ public class Teste
 	public static void main(String[] args)
 	{
 		Simulador s = null;
-		Leitor le = null;
-		int[][] mundo = null;
-		int l, c;
+		int turnos = 0;
 
 		try
 		{
-			le = new Leitor();
-			mundo = le.LerArquivo(args[0]);
+			turnos = Integer.parseInt(args[1]);
 		}
 		catch(Exception e)
 		{
 			e.printStackTrace();
 		}
 
-		l = le.Getl();
-		c = le.Getc();
-		System.out.printf("mundo[%d][%d]\n", l, c);
-
-		for(int i = 0; i < l; i++)
-		{
-			for(int j = 0; j < c; j++)
-			{
-				System.out.print(mundo[i][j] + " ");
-			}
-			System.out.printf("\n");
-		}
-
-
-		System.out.printf("\n\nCOMEÇANDO O TESTE SÉRIO!!\n\n");
 		s = new Simulador();
-		s.Faz_Tudo(args[0]);
+		s.Faz_Tudo(args[0], turnos);
 
 	}
 }
