@@ -217,7 +217,7 @@ public class Simulador
 				{
 					if(--mapa_atual[i][j].vida == 0)
 					{
-						mapa_prox[i][j] = new Celula(DEFUNTO, 0);
+						mapa_prox[i][j] = new Celula(DEFUNTO, 10);
 					}
 					else
 					{
@@ -225,8 +225,9 @@ public class Simulador
 						vPredador = ContaVizinhosR1(mapa_atual, PREDADOR, i, j);
 
 						/* Morre */
-						if((vPredador > 2*vPresa))
-							mapa_prox[i][j] = new Celula(DEFUNTO, 0);
+						//if((vPredador > 2*vPresa))
+						//	mapa_prox[i][j] = new Celula(DEFUNTO, 0);
+						if(false){}
 						else
 						{
 							/* Anda */
@@ -270,7 +271,7 @@ public class Simulador
 				{
 					ok = false;
 					if(--mapa_atual[i][j].vida == 0)
-						mapa_prox[i][j] = new Celula(DEFUNTO, 0);
+						mapa_prox[i][j] = new Celula(DEFUNTO, 10);
 					else
 					{
 						/* Procura presa em R = 1 */
@@ -470,7 +471,7 @@ public class Simulador
 					if( (vPresa == 2))
 						mapa_prox[i][j] = new Celula(PRESA, 20);
 
-					else if( (vPredador == 5) && (vPresa == 0) )
+					else if( (vPredador == 3) && (vPresa == 0) )
 						mapa_prox[i][j] = new Celula(PREDADOR, 20);
 
 					if((vReciclador == 3) && (vDefunto > 0))
@@ -484,7 +485,12 @@ public class Simulador
 		for(i = 0; i < l; i++)
 			for(j = 0; j < c; j++)
 				if((mapa_atual[i][j].tipo == DEFUNTO)&&((mapa_prox[i][j].tipo == DEFUNTO)||(mapa_prox[i][j].tipo == NADA)))
-					mapa_prox[i][j] = new Celula(DEFUNTO, 0);
+				{
+					//if(--mapa_atual[i][j].vida == 0)
+					//	mapa_prox[i][j] = new Celula(NADA,0);
+					//else
+						mapa_prox[i][j] = new Celula(DEFUNTO, mapa_atual[i][j].vida);
+				}
 	}
 
 	/*
