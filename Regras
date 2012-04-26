@@ -11,7 +11,6 @@ Recilcador:
 	    Se vida  = 0, morre.
 
 Presa:
-	Se possue 4 ou mais vizinhos presa, morre de fome;
 	Se presas >= predadores, anda aleatório (vida --);
 	Se predadores > presas, morre;
 
@@ -19,7 +18,7 @@ Defunto:
 	Espera ser recilcado;
 
 Nada:
-	Se presas = 3 e predador = 0, vira presa;
+	Se presas = 2, vira presa;
 	Se predadores = 3 e presa = 0, vira predador;
-	Se reciclador = 3 e defunto = 0, vira recilcador;
+	Se reciclador = 1 e defunto = 0, vira recilcador;
 
