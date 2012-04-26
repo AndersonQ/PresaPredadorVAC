@@ -225,7 +225,7 @@ public class Simulador
 						vPredador = ContaVizinhosR1(mapa_atual, PREDADOR, i, j);
 
 						/* Morre */
-						if((vPresa >= 4) || (vPredador > vPresa))
+						if((vPredador > 2*vPresa))
 							mapa_prox[i][j] = new Celula(DEFUNTO, 0);
 						else
 						{
@@ -467,10 +467,10 @@ public class Simulador
 					vReciclador = ContaVizinhosR1(mapa_atual, RECICLADOR, i, j);
 					vDefunto = ContaVizinhosR1(mapa_atual, DEFUNTO, i, j);
 
-					if( (vPresa == 3) && (vPredador == 0))
+					if( (vPresa == 2))
 						mapa_prox[i][j] = new Celula(PRESA, 20);
 
-					else if( (vPredador == 3) && (vPresa == 0) )
+					else if( (vPredador == 5) && (vPresa == 0) )
 						mapa_prox[i][j] = new Celula(PREDADOR, 20);
 
 					if((vReciclador == 3) && (vDefunto > 0))
