@@ -474,7 +474,7 @@ public class Simulador
 					else if( (vPredador == 3) && (vPresa == 0) )
 						mapa_prox[i][j] = new Celula(PREDADOR, 20);
 
-					if((vReciclador == 3) && (vDefunto > 0))
+					if((vReciclador == 1) && (vDefunto > 0))
 						mapa_prox[i][j] = new Celula(RECICLADOR, 20);
 				}
 	}
